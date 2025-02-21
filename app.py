@@ -5,33 +5,28 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Expecting authors to be comma-separated (e.g., "Alice, Bob, Charlie")
-    authors_env = os.environ.get("AUTHORS", "")
-    authors = [name.strip() for name in authors_env.split(",") if name.strip()]
+    # Expecting server name from environment (e.g., set SERVER_NAME="My Server")
+    server_name = os.environ.get("SERVER_NAME", "Default Server Name")
 
     html = """
     <!doctype html>
     <html lang="en">
       <head>
-        <meta charset="utf-8">
-        <title>Creators</title>
+      <meta charset="utf-8">
+      <title>Server Name</title>
       </head>
       <body>
-        <header>
-          <img src="https://da.upm.es/wp-content/uploads/2018/09/imago.png" alt="Header Image">
-        </header>
-        <main>
-          <h1>Creators</h1>
-          <ul>
-            {% for creator in authors %}
-              <li>{{ creator }}</li>
-            {% endfor %}
-          </ul>
-        </main>
+      <header>
+        <img src="https://da.upm.es/wp-content/uploads/2018/09/imago.png" alt="Header Image">
+      </header>
+      <main>
+        <h1>Server Name</h1>
+        <p>{{ server_name }}</p>
+      </main>
       </body>
     </html>
     """
-    return render_template_string(html, authors=authors)
+    return render_template_string(html, server_name=server_name)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+  app.run(debug=True, host="0.0.0.0")
