@@ -20,7 +20,7 @@ def index():
         <img src="https://da.upm.es/wp-content/uploads/2018/09/imago.png" alt="Header Image">
       </header>
       <main>
-        <h1>Odin</h1>
+        <h1>Server Name</h1>
         <p>{{ server_name }}</p>
       </main>
       </body>
